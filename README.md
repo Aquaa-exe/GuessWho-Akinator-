@@ -68,8 +68,7 @@ HTML5 for structure
 CSS3 for styling
 JavaScript for functionality
 Git & GitHub for version control
-Contributing
-Contributions are always welcome! If you'd like to help improve the project, feel free to fork the repository, create a branch, and submit a pull request.
+
 
 
 
@@ -81,6 +80,7 @@ Contributions are always welcome! If you'd like to help improve the project, fee
 
 
 ### How to contribute:
+**Contributions are always welcome! If you'd like to help improve the project, feel free to fork the repository, create a branch, and submit a pull request.**
 Fork the project.
 Create a new branch: git checkout -b feature-branch.
 Make your changes and commit them: git commit -am 'Add new feature'.
