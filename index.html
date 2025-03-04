@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Character</title>
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+    <h1>STEAM WHO?</h1>
+    <img src="img/genio2.jpg">
+
+    <h2>Think of a famous character. Answer "Yes" or "No" to the following questions.</h2>
+    <p>Test the system and see if it can guess your character!</p>
+    <p>You can choose from these 20 famous characters:</p>
+    <p>Albert Einstein, Leonardo da Vinci, Marie Curie, Thomas Edison, Steve Jobs, Elon Musk, Neil Armstrong, Jane Goodall, Bill Gates, Vincent van Gogh, Stephen Hawking, 
+       Galileo Galilei, Frida Kahlo, Alan Turing, Nikola Tesla, Amelia Earhart, Salvador Dalí, Claude Monet, Grace Hopper, Jeff Bezos.</p>
+
+    <div id="question"></div>
+
+    <div id="buttons">
+        <button id="yesButton">Yes</button>
+        <button id="noButton">No</button>
+    </div>
+
+    <div id="result" style="display: none;">
+        <h2>Result:</h2>
+        <p id="guessedCharacter"></p>
+        <img id="characterImage" src="" alt="Character image">
+    </div>
+
+    <script>
+        const characters = [
+            { name: "Leonardo da Vinci", characteristics: ["Was he a painter?", "Was he an inventor?", "Did he live during the Renaissance?", "Is he known for his revolutionary works?", "Does he have a thick white beard?"], image: "img/Leonardo_Da_Vinci.jpg" },
+            { name: "Marie Curie", characteristics: ["Was she a scientist?", "Did she win a Nobel Prize?", "Did she make discoveries about radioactivity?", "Was she Polish?"], image: "img/Marie_Curie_c1920.jpg" },
+            { name: "Albert Einstein", characteristics: ["Is he known for the theory of relativity?", "Was he German?", "Was he one of the greatest scientists of the 1900s?", "Is he known for his thick white hair?"], image: "img/Einstein.jpg" },
+            { name: "Thomas Edison", characteristics: ["Is he the inventor of the lightbulb?", "Was he born in 1847?"], image: "img/Thomas_Edison.jpg" },
+            { name: "Steve Jobs", characteristics: ["Is he dead?", "Is he the inventor of a very famous tech brand?", "Does this brand have an apple logo?"], image: "img/stevejobs.jpg" },
+            { name: "Elon Musk", characteristics: ["Is he currently one of the richest men in the world?", "Is he the CEO of an electric car company?", "Does he have African roots?"], image: "img/elonmusk.jpg" },
+            { name: "Neil Armstrong", characteristics: ["Was he a great astronaut?", "Was he the first man to set foot on the moon?"], image: "img/neilarmstrong.jpg" },
+            { name: "Jane Goodall", characteristics: ["Is she a famous British anthropologist?", "Is she known worldwide for her studies on chimpanzees?", "Is she also an environmentalist?"], image: "img/janegoodall.jpg" },
+            { name: "Bill Gates", characteristics: ["Is he a great entrepreneur in the tech field?", "Is he the inventor of Windows?"], image: "img/billgates.jpg" },
+            { name: "Vincent Van Gogh", characteristics: ["Is he of Dutch nationality?", "Is he widely known for his painting (Starry Night)?"], image: "img/vangogh.jpg" },
+            { name: "Stephen Hawking", characteristics: ["Was he a great theoretical physicist?", "Was he afflicted by a severe degenerative disease?"], image: "img/stephenhawking.jpg" },
+            { name: "Galileo Galilei", characteristics: ["Was he the greatest astronomer of the 1500s?", "Was he the discoverer of the heliocentric theory?"], image: "img/galileogalilei.jpg" },
+            { name: "Frida Kahlo", characteristics: ["Is she of Mexican nationality?", "Is she a great female symbol?", "Is she famous for her self-portraits?"], image: "img/fridakahlo.jpg" },
+            { name: "Alan Turing", characteristics: ["Was he a great mathematician and cryptographer?", "Is he considered one of the fathers of computer science?", "Did he contribute to the development of the modern computer?"], image: "img/alanturing.jpg" },
+            { name: "Nikola Tesla", characteristics: ["Is he recognized as a great inventor in the field of electromagnetism?", "Did he develop the alternating current electrical system?"], image: "img/nikolatesla.jpg" },
+            { name: "Amelia Earhart", characteristics: ["Is she an American woman?", "Was she the first woman to complete a transatlantic flight?"], image: "img/ameliaearhart.jpg" },
+            { name: "Salvador Dalì", characteristics: ["Is he Spanish?", "Was he part of the surrealist movement?", "Is he famous for his rather bizarre works?"], image: "img/salvadordali.jpg" },
+            { name: "Claude Monet", characteristics: ["Was he one of the founders of French Impressionism?", "Are his paintings characterized by bright colors?"], image: "img/claudemonet.jpg" },
+            { name: "Grace Hopper", characteristics: ["Was she one of the first women to excel in computer programming?"], image: "img/gracehopper.jpg" },
+            { name: "Jeff Bezos", characteristics: ["Is he bald?", "Is he the CEO of a very famous international shopping website?"], image: "img/jeffbezos.jpg" }
+        ];
+
+        let currentCharacterIndex = 0;
+        let currentQuestionIndex = 0;
+
+        function showNextQuestion() {
+            const questionContainer = document.getElementById("question");
+            const buttonsContainer = document.getElementById("buttons");
+
+            if (currentCharacterIndex < characters.length && currentQuestionIndex < characters[currentCharacterIndex].characteristics.length) {
+                const question = characters[currentCharacterIndex].characteristics[currentQuestionIndex];
+                questionContainer.innerHTML = `<p>${question}</p>`;
+                buttonsContainer.style.display = "block"; 
+            } else {
+                guessCharacter();
+            }
+        }
+
+        function guessCharacter() {
+            const character = characters[currentCharacterIndex];
+            showResult(character.name);
+        }
+
+        function showResult(characterName) {
+            const resultContainer = document.getElementById("result");
+            const guessedCharacterElement = document.getElementById("guessedCharacter");
+            const characterImageElement = document.getElementById("characterImage");
+            
+            guessedCharacterElement.textContent = characterName;
+            const character = characters.find(character => character.name === characterName);
+            if (character) {
+                characterImageElement.src = character.image;
+            }
+
+            resultContainer.style.display = "block"; 
+        }
+
+        document.getElementById("yesButton").addEventListener("click", function() {
+            handleResponse("Yes");
+        });
+
+        document.getElementById("noButton").addEventListener("click", function() {
+            handleResponse("No");
+        });
+
+        function handleResponse(response) {
+            if (response === "No" && currentQuestionIndex === 0) {
+                currentCharacterIndex++;
+                currentQuestionIndex = 0;
+            } else if (response === "Yes") {
+                currentQuestionIndex++;
+                if (currentQuestionIndex >= characters[currentCharacterIndex].characteristics.length) {
+                    guessCharacter();
+                    return;
+                }
+            } else {
+                currentCharacterIndex++;
+                currentQuestionIndex = 0;
+            }
+
+            if (currentCharacterIndex < characters.length) {
+                showNextQuestion();
+            } else {
+                showResult("No character found");
+            }
+        }
+
+        showNextQuestion();
+    </script>
+</body>
+</html>
