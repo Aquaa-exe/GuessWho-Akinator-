@@ -39,28 +39,31 @@ Make sure you have a basic text editor and a browser for viewing the game (any m
 
 1. Clone the repository to your local machine:
 
-bash
 
- git clone https://github.com/YOUR_USERNAME/GuessWho-Akinator-.git
+**git clone https://github.com/YOUR_USERNAME/GuessWho-Akinator-.git**
 
 
 Navigate to the project directory:
 
-bash
 
-cd GuessWho-Akinator-
+**cd GuessWho-Akinator-**
 
 
 Open the index.html file in your browser to start playing!
 
-bash
 
-open index.html
-
+**open index.html**
 
 
 
-Technologies Used
+
+
+
+
+
+
+
+### Technologies Used
 HTML5 for structure
 CSS3 for styling
 JavaScript for functionality
@@ -71,7 +74,13 @@ Contributions are always welcome! If you'd like to help improve the project, fee
 
 
 
-How to contribute:
+
+
+
+
+
+
+### How to contribute:
 Fork the project.
 Create a new branch: git checkout -b feature-branch.
 Make your changes and commit them: git commit -am 'Add new feature'.
