@@ -43,13 +43,13 @@ Make sure you have a basic text editor and a browser for viewing the game (any m
 **git clone https://github.com/YOUR_USERNAME/GuessWho-Akinator-.git**
 
 
-Navigate to the project directory:
+2. Navigate to the project directory:
 
 
 **cd GuessWho-Akinator-**
 
 
-Open the index.html file in your browser to start playing!
+3. Open the index.html file in your browser to start playing!
 
 
 **open index.html**
